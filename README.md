@@ -1,1 +1,8 @@
-# stream-your-music
+# Stream Your Music
+  * A free music streaming website in which users can search and listen to any music they want.
+
+## Introduction
+  * This website was designed and developed as a part of the final project for Comp426 (Advanced Web Programming).
+
+## Links
+  * Demo video - https://youtu.be/qyUT4F7xRfA

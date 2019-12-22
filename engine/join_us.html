@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            overflow: hidden;
+            position: relative;
+        }
+        body {
+            overflow: hidden;
+            position: relative;
+        }
+        .column {
+            width: 50%;
+            margin: 0% 25% 0% 25%;
+            border: 5px solid whitesmoke;
+            border-radius: 10px;
+            background: whitesmoke;
+        }
+    </style>
+    <link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css"/>
+    <title>Stream your music!</title>
+</head>
+<body class="disable-select" id="body">
+<!-- class안에 has-text-grey is-4 is-italic is-primary is-success etc... -->
+    <section class="hero is-bold is-fullheight is-dark"> <!--is-dark -->
+        <div class="hero-body">
+            <div class="container has-text-left">
+                <div class="columns">      
+                    <div class="column">
+                        <h1 class="title" style="color:rgb(36, 36, 36)">
+                            Signup
+                        </h1>
+                        <form>
+                            <div class="field"> <!-- this works as a container, keeping the spacing consistent-->
+                                <label class="label">
+                                    Username
+                                </label>
+                                <div class="control">
+                                    <input id="username" class="input" type="text" placeholder="E.g., John_Park95" name="username" value="">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Password
+                                </label>
+                                <div class="control">
+                                    <input id="password" class="input" type="password" placeholder="E.g., password123" name="password" value="">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Repeat Password
+                                </label>
+                                <div class="control">
+                                    <input id="repeatPassword" class="input" type="password" placeholder="E.g., password123" name="password_repeat" value="">
+                                </div>
+                            </div>
+                            <div class="button is-dark">
+                                Submit
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="./join_us.js" type="text/javascript"></script>
+</body>
+</html>
