@@ -400,6 +400,7 @@ $(document).ready(function () {
     let history_button = true;
     let history_title_once = true;
     $('#search_history').on('click', function(e) {
+        console.log(music_history);
         if (history_button) {
             history_button = false;
             for (let i = 0; i < music_history.length; i++) {
@@ -425,7 +426,7 @@ $(document).ready(function () {
 
         if (video_ids.hasOwnProperty($(".input").val())) {
             music_history.push($(".input").val())
-            //console.log(music_history);
+            console.log(music_history);
             if (getCookie("currentSize") == 0) {
                 bake_cookie(parseInt(getCookie("currentSize")) + 1, 10);
                 $('#add_here').html(player_html($(".input").val(), video_ids[$(".input").val()]));
