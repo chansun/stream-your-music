@@ -9,7 +9,7 @@
   * CSS Framework: Bulma
   * JavaScript Library: jQuery, and jQuery UI
   * 3rd Part API: YouTube API
-  * Backend API: Provided by Chris Burgess, the Comp426 TA.
 
 ## Links
   * Demo video - https://youtu.be/qyUT4F7xRfA
+  * Website published at - Will be updated soon
