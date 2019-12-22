@@ -7,7 +7,7 @@ async function public_userCount_get() {
         return result;
     }
     catch (error) {
-        console.log("public_authors ajax threw an error!"); // comment this out later
+        console.log("public_userCount_get ajax threw an error!");
     }
 }
 
@@ -21,7 +21,7 @@ async function public_userCount_post(userCount_num) {
         return result;
     }
     catch (error) {
-        console.log("public_authors ajax threw an error!"); // comment this out later
+        console.log("public_userCount_post ajax threw an error!");
     }
 }
 
@@ -30,21 +30,16 @@ async function public_post(title, videoId, current_num) {
         const result = await $.ajax({ 
             method: 'POST',
             url: 'http://localhost:3000/public/users/user' + current_num,
-            dataType: "json", // comment this out later
-            ContentType: "application/json", // comment this out later
-            // 수정 버전에서 되는거
+            //dataType: "json", // comment this out later
+            //ContentType: "application/json", // comment this out later
             data: {title: title, videoId: videoId}
-            // 기존 버전에서 되는거
-            //data: {data: "테스트테스트"},
-            //data: {data: "&&&" + title + "|||" + videoId + "%%%"},
         });
         return result;
     }
     catch (error) {
-        console.log("public_authors ajax threw an error!"); // comment this out later
+        console.log("public_post ajax threw an error!");
     }
 }
-
 
 
 /*
@@ -78,13 +73,12 @@ async function public_get2(current_num) {
         return result;
     }
     catch (error) {
-        console.log("public_authors ajax threw an error!"); // comment this out later
+        console.log("public_get2 ajax threw an error!");
     }
 }
 
-
-// Public account initialize 기능잠금
-
+// Static version, so lock these.
+/*
 let userCount = public_userCount_get();
 let current_num;
 userCount.then(function(result) {
@@ -92,13 +86,12 @@ userCount.then(function(result) {
     let response = public_post(["title_temp1", "title_temp2"], ["videoId_temp1", "videoId_temp2"], current_num);
     response.then(function(result) {
         console.log("===initialize===");
-        console.log(result); // comment this out later
+        console.log(result);
         console.log("===initialize===");
     });
     public_userCount_post(current_num);
 });
-
-
+*/
 
 async function public_post_merge(title, videoId, current_num) {   
     let response2 = public_get2(current_num);
@@ -114,14 +107,11 @@ async function public_post_merge(title, videoId, current_num) {
     });
 }
 
-/* 기능잠금
+/*
 setTimeout(function(){
     public_post_merge("title_temp3", "videoId_temp3", current_num);
 }, 3000);
 */
-
-
-
 
 async function public_delete(current_num) {
     try {
@@ -132,7 +122,7 @@ async function public_delete(current_num) {
         return result;
     }
     catch (error) {
-        console.log("public_authors ajax threw an error!"); // comment this out later
+        console.log("public_delete ajax threw an error!");
     }
 }
 
@@ -143,27 +133,6 @@ setTimeout(function(){
         console.log(result);
     });
 }, 6000);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 let count = 0;
 let count_hash = {};
@@ -206,7 +175,7 @@ async function Youtube_get(query) {
         return result;
     }
     catch (error) {
-        console.log("ajax threw an error!");
+        console.log("Youtube_get threw an error!");
     }
 }
 
@@ -268,8 +237,6 @@ function playerList_html(title) { // videoId e.g., tq1HB3xLctc
     return playerList_html;
 }
 
-
-
 $(document).ready(function () {
 
     $('#sign_in').on('click', sign_in_handler);
@@ -277,49 +244,30 @@ $(document).ready(function () {
 
     let timeout;
     let video_ids = {};
-    //기능 잠금
-    // Zion.T - ‘노래(THE SONG)’ M/V  검색명을 정확히 입력안하면 안됨.
-    
+
     $('input').on('keyup', function(e) {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             let temp = Youtube_get($(".input").val());
-            console.log("temp: ");
-            console.log(temp);
+            //console.log("temp: ");
+            //console.log(temp);
             temp.then(function(result) {
-                console.log("result: ");
-                console.log(result);
-                //var array = [];
+                //console.log("result: ");
+                //console.log(result);
                 let array = [result['items'][0]['snippet']['title']];
-                //array = [result['items'][0]['snippet']['title'], result['items'][1]['snippet']['title'], result['items'][2]['snippet']['title']];
-                //array = [result['items'][0]['snippet']['title'], result['items'][1]['snippet']['title'], result['items'][2]['snippet']['title'], result['items'][3]['snippet']['title'], result['items'][4]['snippet']['title']];
                 video_ids[result['items'][0]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][1]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][2]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][3]['snippet']['title']] = result['items'][0]['id']['videoID'];
-                //video_ids[result['items'][4]['snippet']['title']] = result['items'][0]['id']['videoID'];
-                //
-                console.log("array: " + array);
-                console.log("=====================================");
-                console.log("=====================================");
-                //
-                //$("#search").autocomplete({source: array});
+                //console.log("array: " + array);
+                //console.log("=====================================");
+                //console.log("=====================================");
                 $("#search").autocomplete({
                     source: array,
                 });
-               
-                //if ((e.keyCode != 38) || (e.keyCode != 40) || (e.keyCode != 13)) { // 이거 키코드 수정하기
                 if ((e.keyCode != 37) && (e.keyCode != 38) && (e.keyCode != 39) && (e.keyCode != 40) && (e.keyCode != 13) && (e.keyCode != 32) && (e.keyCode != 8) && (e.keyCode != 18) && (e.keyCode != 91) && (e.keyCode != 16)) {
                     $("#search").autocomplete( "search", " " );
-                    //console.log("search trigger!");
                 }
             });
         }, 500);
     });
-    
-    
-    
-    
     
     // onYouTubeIframeAPIReady() 요 함수를 페이지 로드와 동시에 너무 빨리 실행시키면
     // 유투브 api에서 응답하는 속도 차이때문에 실행 안될때가 있음.
@@ -332,7 +280,6 @@ $(document).ready(function () {
             ctrlq.innerHTML = '<img id="youtube-icon" src=""><div id="youtube-player"></div>';
             ctrlq.style.cssText = 'width:100px;margin:1.5em auto;cursor:pointer;cursor:hand;display:none';
             ctrlq.onclick = toggleAudio;
-
             player = new YT.Player('youtube-player', {
             height: '0',
             width: '0',
@@ -352,7 +299,7 @@ $(document).ready(function () {
         }
         function toggleAudio() {
             if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
-            player.pauseVideo(); 
+            player.pauseVideo();
             togglePlayButton(false);
             } else {
             player.playVideo(); 
@@ -371,8 +318,7 @@ $(document).ready(function () {
         }
     });
 
-    
-    /*
+    /* 
     video_ids["[MV] JANNABI(잔나비) _ Good Boy Twist"] = "twIUeUkEyks";
     video_ids["MIKA - 'Big Girl' (Live on Late Night with Seth Meyers / 2019)"] = "kTLT9E1nmtQ";
     video_ids["busted year 3000"] = "o07HhMFUSv0";
@@ -390,8 +336,6 @@ $(document).ready(function () {
         }
     });
     */
-    
-    
     
     function getCookie(cname) {
         var name = cname + "=";
@@ -420,8 +364,8 @@ $(document).ready(function () {
     //console.log(getCookie("currentSize"));
     //console.log(typeof(parseInt(getCookie("currentSize")) + 2));
 
-
-
+    // Original version with backend api
+    /*
     let history_button = true;
     let history_title_once = true;
     $('#search_history').on('click', function(e) {
@@ -449,9 +393,39 @@ $(document).ready(function () {
             $('#search_history_here').html("");
         }
     })
+    */
+
+    let music_history = []
+    // Static version without backend api
+    let history_button = true;
+    let history_title_once = true;
+    $('#search_history').on('click', function(e) {
+        if (history_button) {
+            history_button = false;
+            for (let i = 0; i < music_history.length; i++) {
+                if (history_title_once) {
+                    $('#search_history_here').css("visibility", "visible");
+                    $('#search_history_here').append('<div class="title is-5" style="text-align: center;">Search History</div>');           
+                    history_title_once = false;
+                }
+                let temp = music_history[i];
+                let temp2 = `${temp}<br>`;
+                $('#search_history_here').append(temp2);
+            }
+        }
+        else {
+            history_button = true;
+            history_title_once = true;
+            $('#search_history_here').css("visibility", "hidden");
+            $('#search_history_here').html("");
+        }
+    })
 
     $('.button').click('onclick', function(e) {
+
         if (video_ids.hasOwnProperty($(".input").val())) {
+            music_history.push($(".input").val())
+            //console.log(music_history);
             if (getCookie("currentSize") == 0) {
                 bake_cookie(parseInt(getCookie("currentSize")) + 1, 10);
                 $('#add_here').html(player_html($(".input").val(), video_ids[$(".input").val()]));

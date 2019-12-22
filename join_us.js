@@ -1,14 +1,10 @@
-
-
-
 async function user_post(id, password, jwt) {    
     try {
         const result = await $.ajax({ 
             method: 'POST',
             url: 'http://localhost:3000/user/' + id,
-            dataType: "json", // comment this out later
-            ContentType: "application/json", // comment this out later
-            // 수정 버전에서 되는거
+            //dataType: "json", // comment this out later
+            //ContentType: "application/json", // comment this out later
             data: {
                 id: id, 
                 password: password, 
@@ -19,18 +15,13 @@ async function user_post(id, password, jwt) {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
-
-            // 기존 버전에서 되는거
-            //data: {data: "테스트테스트"},
-            //data: {data: "&&&" + title + "|||" + videoId + "%%%"},
         });
         return result;
     }
     catch (error) {
-        console.log("user_post ajax threw an error!"); // comment this out later
+        console.log("user_post ajax threw an error!");
     }
 }
-
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -57,7 +48,6 @@ function bake_cookie(id, password, jwt, mins) {
     document.cookie = "expires="+ d.toUTCString(); // GMT base. Greenwich time zone.
 }
 
-
 async function create_account(id, password) {
     console.log("create account");
     try {
@@ -69,17 +59,12 @@ async function create_account(id, password) {
             data: {
                 "name": id,
                 "pass": password,
-                /*
-                "data": {
-                    "role": 2,
-                    "description": "Lazy..."
-                }*/
             },
         });
         return result;
     }
     catch (error) {
-        console.log("ajax threw an error!"); // comment this out later
+        console.log("create_account ajax threw an error!");
         alert("There is alreay an existing account for the user name. Please try again.");
         $('#username').val("");
         $('#password').val("");
@@ -92,8 +77,8 @@ async function sign_in(id, password) {
         const result = await $.ajax({
             method: 'POST',
             url: 'http://localhost:3000/account/login',
-            dataType: "json", // comment this out later
-            ContentType: "application/json", // comment this out later
+            //dataType: "json", // comment this out later
+            //ContentType: "application/json", // comment this out later
             data: {    
                 "name": id, 
                 "pass": password
@@ -102,7 +87,7 @@ async function sign_in(id, password) {
         return result;
     }
     catch (error) {
-        console.log("sign_in ajax threw an error!"); // comment this out later
+        console.log("sign_in ajax threw an error!");
         alert("Login unsuccessful. Please try again.");
         $('#ID').val("");
         $('#password').val("");
@@ -110,7 +95,6 @@ async function sign_in(id, password) {
 }
 
 $(document).ready(function () {
-
     let id = "";
     let password = "";
     let password_repeat = "";
@@ -119,16 +103,13 @@ $(document).ready(function () {
         // default behavior is refresh the page
         e.preventDefault();
         e.stopPropagation();
-        //console.log(e.target);
-        //var par = $(e.target).parent().parent().parent();
+        alert("This is a static version, so no backend service available.");
+        /*
         var par = $(e.target).parent();
         let temp = par.serializeArray();
         id = temp[0].value;
         password = temp[1].value;
         password_repeat = temp[2].value;
-        //console.log("ID: " + temp[0].value);
-        //console.log("Password: " + temp[1].value);
-        //console.log("Password_repeat: " + temp[2].value);
         if (password != password_repeat) {
             alert("Password does not match");
             $('#password').val("");
@@ -140,23 +121,22 @@ $(document).ready(function () {
         else { // Please use chrome
             let response = create_account(id, password);
             response.then(function (value) {
-                console.log(value);
-                console.log(value['status']);
+                //console.log(value); // comment this out later
+                //console.log(value['status']); // comment this out later
                 alert("Account successfully created");
-                //location.href= 'index.html';
                 let response2 = sign_in(id, password);
                 response2.then(function(result) {
                     let response3 = user_post(id, password, result['jwt']);
                     bake_cookie(id, password, result['jwt'], 10);
                     response3.then(function(value) {
-                        console.log(value);
+                        //console.log(value); // comment this out later
                         location.href= 'index_logged_in.html';
                     })
                 });
             });
         }
+        */
     });
 });
-
 // id: chansun
 // password: 123123
