@@ -10,6 +10,8 @@
 <img src="./screenshots/play.png" width="45%"></img>
 <img src="./screenshots/drag_title_to_delete.png" width="45%"></img>
 <img src="./screenshots/search_history2.png" width="45%"></img>
+<img src="./screenshots/sign_in.png" width="45%"></img>
+<img src="./screenshots/join_us.png" width="45%"></img>
 </div>
 
 ## How to use
