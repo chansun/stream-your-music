@@ -1,5 +1,5 @@
 # Stream Your Music
-  * A free music streaming website in which users can search and listen to any music they want.
+  * Stream Your Music is a free music streaming website in which users can search and listen to any music they want.
 
 ## Introduction
   * The website was developed as a part of the final project for Comp426 (Advanced Web Programming), a computer science course at UNC-Chapel Hill.
@@ -8,7 +8,7 @@
 <div>
 <img src="./screenshots/search.png" width="45%"></img>
 <img src="./screenshots/play.png" width="45%"></img>
-<img src="./screenshots/search_history.png" width="45%"></img>
+<img src="./screenshots/search_history2.png" width="45%"></img>
 <img src="./screenshots/drag_title_to_delete.png" width="45%"></img>
 </div>
 
@@ -32,4 +32,4 @@
 
 ## Links
   * Demo video - https://youtu.be/qyUT4F7xRfA
-  * Static version available at - https://chansun.github.io/stream-your-music/
+  * Static version published at - https://chansun.github.io/stream-your-music/
