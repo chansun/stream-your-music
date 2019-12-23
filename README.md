@@ -16,10 +16,10 @@
 
 ## How to use
   * Search a song using the autocomplete suggestion in the search box.
-  * Click the submit button to add the song in the playlist.
+  * Click the submit button to add the song to the playlist.
   * Click the play button to play the song that is currently in the music player.
   * Click the title of the song in the playlist to put it into the music player.
-  * Drag the title of the song in the playlist to delete it from the playlist.
+  * Drag the title of the song in the playlist to remove it from the playlist.
   * Click the "Search History" tab to retrieve the search history.
 
 ## Notes
@@ -29,7 +29,7 @@
 ## Technologies used
   * Language: HTML, CSS, and JavaScript
   * CSS Framework: Bulma
-  * JavaScript Library: jQuery, and jQuery UI
+  * JavaScript Library: jQuery and jQuery UI
   * 3rd Part API: YouTube API
 
 ## Links
