@@ -102,7 +102,7 @@ $(document).ready(function () {
         // default behavior refreshes the page
         e.preventDefault();
         e.stopPropagation();
-        alert("This is a static version. No backend service is available.");
+        alert("This is a static version. Backend service is unavailable.");
         /* ======================= Only work with backend api =======================
         var par = $(e.target).parent();
         let temp = par.serializeArray();

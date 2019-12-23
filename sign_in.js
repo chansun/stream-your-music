@@ -71,7 +71,7 @@ $(document).ready(function () {
     $('#body').on('click', '.button', function (e) {
         // default behavior refreshes the page
         e.preventDefault();
-        alert("This is a static version. No backend service is available.");
+        alert("This is a static version. Backend service is unavailable.");
         /* ======================= Only work with backend api =======================
         var par = $(e.target).parent().parent().parent();
         let temp = par.serializeArray();
