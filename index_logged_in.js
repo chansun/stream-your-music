@@ -10,20 +10,17 @@ async function private_get(jwt) {
         return result;
     }
     catch (error) {
-        console.log("private_get ajax threw an error!"); // comment this out later
+        console.log("private_get ajax threw an error!");
     }
 }
-
-
 
 async function private_post(title, jwt) {    
     try {
         const result = await $.ajax({ 
             method: 'POST',
             url: 'http://localhost:3000/private/users',
-            dataType: "json", // comment this out later
-            ContentType: "application/json", // comment this out later
-            // 수정 버전에서 되는거
+            //dataType: "json", // comment this out later
+            //ContentType: "application/json", // comment this out later
             data: {title: title},
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -32,7 +29,7 @@ async function private_post(title, jwt) {
         return result;
     }
     catch (error) {
-        console.log("private_post ajax threw an error!"); // comment this out later
+        console.log("private_post ajax threw an error!");
     }
 }
 
@@ -45,14 +42,6 @@ async function private_post_merge(title, jwt) {
     });
 };
 
-
-
-
-
-
-
-
-
 async function account_delete(id) {
     try {
         const result = await $.ajax({
@@ -62,10 +51,9 @@ async function account_delete(id) {
         return result;
     }
     catch (error) {
-        console.log("account_delete ajax threw an error!"); // comment this out later
+        console.log("account_delete ajax threw an error!");
     }
 }
-
 
 async function user_delete(id, jwt) {
     try {
@@ -80,15 +68,9 @@ async function user_delete(id, jwt) {
         return result;
     }
     catch (error) {
-        console.log("user_delete ajax threw an error!"); // comment this out later
+        console.log("user_delete ajax threw an error!");
     }
 }
-
-
-
-
-
-
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -114,13 +96,6 @@ function bake_cookie(currentSize, mins) {
 }
 bake_cookie(0, 10);
 
-
-
-
-
-
-
-
 async function user_get(id, jwt) {    
     try {
         const result = await $.ajax({ 
@@ -133,7 +108,7 @@ async function user_get(id, jwt) {
         return result;
     }
     catch (error) {
-        console.log("user_get ajax threw an error!"); // comment this out later
+        console.log("user_get ajax threw an error!");
     }
 }
 
@@ -142,9 +117,8 @@ async function user_post(id, password, jwt, title, videoId) {
         const result = await $.ajax({ 
             method: 'POST',
             url: 'http://localhost:3000/user/' + id,
-            dataType: "json", // comment this out later
-            ContentType: "application/json", // comment this out later
-            // 수정 버전에서 되는거
+            //dataType: "json", // comment this out later
+            //ContentType: "application/json", // comment this out later
             data: {
                 id: id, 
                 password: password, 
@@ -159,11 +133,9 @@ async function user_post(id, password, jwt, title, videoId) {
         return result;
     }
     catch (error) {
-        console.log("user_post ajax threw an error!"); // comment this out later
+        console.log("user_post ajax threw an error!");
     }
 }
-
-
 
 async function user_post_merge(id, password, jwt, title, videoId) {  
     let get_test = user_get(id, jwt);
@@ -179,22 +151,9 @@ async function user_post_merge(id, password, jwt, title, videoId) {
     })
 }
 
-
-//console.log(document.cookie);
 let temp_id = getCookie("id");
 let temp_password = getCookie("password");
 let temp_jwt = getCookie("jwt");
-
-
-
-
-
-
-
-
-
-
-
 
 let count = 0;
 let count_hash = {};
@@ -206,11 +165,10 @@ function drop(ev) {
     $(`#${data}`).detach();
     bake_cookie(parseInt(getCookie("currentSize")) - 1, 10);
     if (getCookie("currentSize") == 0) {
-        //alert("currentSize is 0");
         $('#add_here').html("");
         return 0;
     }
-    // only when the dropped song was in the player panel.
+    // Only when the dropped song was in the player panel.
     if ((now_playing[0] == count_hash[data[8]][0]) && (now_playing[1] == count_hash[data[8]][1]))  {
         while ($('#listHere').children().first().is('script')) {
             $('#listHere').children().first().remove();
@@ -235,7 +193,7 @@ async function Youtube_get(query) {
         return result;
     }
     catch (error) {
-        console.log("ajax threw an error!");
+        console.log("Youtube_get ajax threw an error!");
     }
 }
 
@@ -276,7 +234,6 @@ function player_html(title, videoId) { // videoId e.g., tq1HB3xLctc
 function playerList_html(title) { // videoId e.g., tq1HB3xLctc
     let internal_number = count;
     let temp_title = title;
-    //let temp_title = getCookie("currentSize") + ". " + title;
     let playerList_html = `
         <div id="playList${internal_number}" draggable="true" ondragstart="drag(event)">
             <span class="clickable">${temp_title}</span>
@@ -297,12 +254,7 @@ function playerList_html(title) { // videoId e.g., tq1HB3xLctc
     return playerList_html;
 }
 
-
-
-$(document).ready(function () {
-
-
-    
+$(document).ready(function () {    
     let hot_button = true;    
     $('#hot_songs').on('click', function(e) {
         if (hot_button) {
@@ -342,8 +294,7 @@ $(document).ready(function () {
         }
     });
     
-
-    /*
+    /* Test
     let top_dict = {};
     let private_response = private_get(temp_jwt);
     private_response.then(function(value) {
@@ -371,73 +322,33 @@ $(document).ready(function () {
     });
     */
 
-
-
-
-
-
-
-
-
-
-
     $('#logout').on('click', function(e) {
         location.href= 'index.html';
     })
-
-    //$('#welcome_id').html("ID: " + temp_id);
-
     $('#sign_in').on('click', sign_in_handler);
     $('#join_us').on('click', join_us_handler);
 
     let timeout;
     let video_ids = {};
-    //기능 잠금
-    // Zion.T - ‘노래(THE SONG)’ M/V  검색명을 정확히 입력안하면 안됨.
-    
+
     $('input').on('keyup', function(e) {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             let temp = Youtube_get($(".input").val());
-            console.log("temp: ");
-            console.log(temp);
             temp.then(function(result) {
-                console.log("result: ");
-                console.log(result);
-                //var array = [];
                 let array = [result['items'][0]['snippet']['title']];
-                //array = [result['items'][0]['snippet']['title'], result['items'][1]['snippet']['title'], result['items'][2]['snippet']['title']];
-                //array = [result['items'][0]['snippet']['title'], result['items'][1]['snippet']['title'], result['items'][2]['snippet']['title'], result['items'][3]['snippet']['title'], result['items'][4]['snippet']['title']];
                 video_ids[result['items'][0]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][1]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][2]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //video_ids[result['items'][3]['snippet']['title']] = result['items'][0]['id']['videoID'];
-                //video_ids[result['items'][4]['snippet']['title']] = result['items'][0]['id']['videoID'];
-                //
-                console.log("array: " + array);
-                console.log("=====================================");
-                console.log("=====================================");
-                //
-                //$("#search").autocomplete({source: array});
                 $("#search").autocomplete({
                     source: array,
                 });
-               
-                //if ((e.keyCode != 38) || (e.keyCode != 40) || (e.keyCode != 13)) { // 이거 키코드 수정하기
                 if ((e.keyCode != 37) && (e.keyCode != 38) && (e.keyCode != 39) && (e.keyCode != 40) && (e.keyCode != 13) && (e.keyCode != 32) && (e.keyCode != 8) && (e.keyCode != 18) && (e.keyCode != 91) && (e.keyCode != 16)) {
                     $("#search").autocomplete( "search", " " );
-                    //console.log("search trigger!");
                 }
             });
         }, 500);
     });
-    
-    
-    
-    
-    // onYouTubeIframeAPIReady() 요 함수를 페이지 로드와 동시에 너무 빨리 실행시키면
-    // 유투브 api에서 응답하는 속도 차이때문에 실행 안될때가 있음.
-    // 그래서 keyup햇을때, onYouTubeIframeAPIReady() 시키게 하면 잘 작동됨.
+
+    // On 'keyup', execute onYouTubeIframeAPIReady().
     let onYouTubeIframeAPIReady;
     $('input').on('keyup', function(e) {
         var player;
@@ -485,7 +396,7 @@ $(document).ready(function () {
         }
     });
 
-    /*
+    /* Test
     video_ids["[MV] JANNABI(잔나비) _ Good Boy Twist"] = "twIUeUkEyks";
     video_ids["MIKA - 'Big Girl' (Live on Late Night with Seth Meyers / 2019)"] = "kTLT9E1nmtQ";
     video_ids["busted year 3000"] = "o07HhMFUSv0";
@@ -504,10 +415,6 @@ $(document).ready(function () {
     });
     */
     
-    
-    
-    
-
     $('#delete_account').on('click', function(e) {
         alert("Delete account");
         let response1 = account_delete(temp_id);
@@ -518,8 +425,6 @@ $(document).ready(function () {
             })
         })
     });
-
-
 
     let history_button = true;
     let history_title_once = true;
@@ -556,27 +461,21 @@ $(document).ready(function () {
                 $('#add_here').html(player_html($(".input").val(), video_ids[$(".input").val()]));
                 $('#listHere').html(playerList_html($(".input").val()));
                 onYouTubeIframeAPIReady();
-                //console.log(document.cookie);
                 count_hash[count] = [$(".input").val(), video_ids[$(".input").val()]];
                 count += 1;
                 now_playing[0] = $(".input").val();
                 now_playing[1] = video_ids[$(".input").val()];
-
                 user_post_merge(temp_id, temp_password, temp_jwt, $(".input").val(), video_ids[$(".input").val()]);
                 private_post_merge($(".input").val(), temp_jwt);
-
                 $(".input").val("");
             }
             else {
                 bake_cookie(parseInt(getCookie("currentSize")) + 1, 10);
                 $('#listHere').append(playerList_html($(".input").val()));
-                //console.log(document.cookie);
                 count_hash[count] = [$(".input").val(), video_ids[$(".input").val()]];
                 count += 1;
-
                 user_post_merge(temp_id, temp_password, temp_jwt, $(".input").val(), video_ids[$(".input").val()]);
                 private_post_merge($(".input").val(), temp_jwt);
-
                 $(".input").val("");
             }
         }

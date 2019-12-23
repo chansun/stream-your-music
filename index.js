@@ -41,15 +41,14 @@ async function public_post(title, videoId, current_num) {
     }
 }
 
-
-/*
+/* Test
 let response = public_post("Zion.T - ‘노래(THE SONG)’ M/V", "ecxzqqHwe-4");
 response.then(function(result) {
     console.log(result); // comment this out later
 });
 */
 
-/*
+/* Test
 async function public_get() {
     try {
         const result = await $.ajax({
@@ -77,8 +76,7 @@ async function public_get2(current_num) {
     }
 }
 
-// Static version, so lock these.
-/*
+/* Static version, so lock these.
 let userCount = public_userCount_get();
 let current_num;
 userCount.then(function(result) {
@@ -107,7 +105,7 @@ async function public_post_merge(title, videoId, current_num) {
     });
 }
 
-/*
+/* Test
 setTimeout(function(){
     public_post_merge("title_temp3", "videoId_temp3", current_num);
 }, 3000);
@@ -126,7 +124,7 @@ async function public_delete(current_num) {
     }
 }
 
-/* 기능잠금
+/* Test
 setTimeout(function(){
     let public_del = public_delete(current_num);
     public_del.then(function(result) {
@@ -141,16 +139,13 @@ let now_playing = [];
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    //console.log("data: " + data);
     $(`#${data}`).detach();
     bake_cookie(parseInt(getCookie("currentSize")) - 1, 10);
-    //console.log(document.cookie);
     if (getCookie("currentSize") == 0) {
-        //alert("currentSize is 0");
         $('#add_here').html("");
         return 0;
     }
-    // only when the dropped song was in the player panel.
+    // Only when the dropped song was in the player panel.
     if ((now_playing[0] == count_hash[data[8]][0]) && (now_playing[1] == count_hash[data[8]][1]))  {
         while ($('#listHere').children().first().is('script')) {
             $('#listHere').children().first().remove();
@@ -216,7 +211,6 @@ function player_html(title, videoId) { // videoId e.g., tq1HB3xLctc
 function playerList_html(title) { // videoId e.g., tq1HB3xLctc
     let internal_number = count;
     let temp_title = title;
-    //let temp_title = getCookie("currentSize") + ". " + title;
     let playerList_html = `
         <div id="playList${internal_number}" draggable="true" ondragstart="drag(event)">
             <span class="clickable">${temp_title}</span>
@@ -238,7 +232,6 @@ function playerList_html(title) { // videoId e.g., tq1HB3xLctc
 }
 
 $(document).ready(function () {
-
     $('#sign_in').on('click', sign_in_handler);
     $('#join_us').on('click', join_us_handler);
 
@@ -249,16 +242,9 @@ $(document).ready(function () {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             let temp = Youtube_get($(".input").val());
-            //console.log("temp: ");
-            //console.log(temp);
             temp.then(function(result) {
-                //console.log("result: ");
-                //console.log(result);
                 let array = [result['items'][0]['snippet']['title']];
                 video_ids[result['items'][0]['snippet']['title']] = result['items'][0]['id']['videoId'];
-                //console.log("array: " + array);
-                //console.log("=====================================");
-                //console.log("=====================================");
                 $("#search").autocomplete({
                     source: array,
                 });
@@ -269,9 +255,7 @@ $(document).ready(function () {
         }, 500);
     });
     
-    // onYouTubeIframeAPIReady() 요 함수를 페이지 로드와 동시에 너무 빨리 실행시키면
-    // 유투브 api에서 응답하는 속도 차이때문에 실행 안될때가 있음.
-    // 그래서 keyup햇을때, onYouTubeIframeAPIReady() 시키게 하면 잘 작동됨.
+    // On 'keyup', execute onYouTubeIframeAPIReady().
     let onYouTubeIframeAPIReady;
     $('input').on('keyup', function(e) {
         var player;
@@ -318,7 +302,7 @@ $(document).ready(function () {
         }
     });
 
-    /* 
+    /* Tests
     video_ids["[MV] JANNABI(잔나비) _ Good Boy Twist"] = "twIUeUkEyks";
     video_ids["MIKA - 'Big Girl' (Live on Late Night with Seth Meyers / 2019)"] = "kTLT9E1nmtQ";
     video_ids["busted year 3000"] = "o07HhMFUSv0";
@@ -360,12 +344,8 @@ $(document).ready(function () {
         document.cookie = "expires="+ d.toUTCString(); // GMT base. Greenwich time zone.
     }
     bake_cookie(0, 10);
-    //console.log(document.cookie);
-    //console.log(getCookie("currentSize"));
-    //console.log(typeof(parseInt(getCookie("currentSize")) + 2));
 
-    // Original version with backend api
-    /*
+    /* ========= Only work with backend api =========
     let history_button = true;
     let history_title_once = true;
     $('#search_history').on('click', function(e) {
@@ -393,14 +373,13 @@ $(document).ready(function () {
             $('#search_history_here').html("");
         }
     })
-    */
+    ======================= Only work with backend api ======================= */
 
     let music_history = []
-    // Static version without backend api
+    // ======================= Work without backend api (for static version) =======================
     let history_button = true;
     let history_title_once = true;
     $('#search_history').on('click', function(e) {
-        //console.log(music_history);
         if (history_button) {
             history_button = false;
             for (let i = 0; i < music_history.length; i++) {
@@ -421,9 +400,9 @@ $(document).ready(function () {
             $('#search_history_here').html("");
         }
     })
+    // ======================= Work without backend api (for static version) =======================
 
     $('.button').click('onclick', function(e) {
-
         if (video_ids.hasOwnProperty($(".input").val())) {
             music_history.push($(".input").val())
             //console.log(music_history);

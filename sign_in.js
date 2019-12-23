@@ -57,7 +57,7 @@ async function get_status(jwt) {
         return result;
     }
     catch (error) {
-        console.log("get_status ajax threw an error!"); // comment this out later
+        console.log("get_status ajax threw an error!");
         alert("Login unsuccessful. Please try again.");
         $('#ID').val("");
         $('#password').val("");
@@ -69,10 +69,10 @@ $(document).ready(function () {
     let password = "";
 
     $('#body').on('click', '.button', function (e) {
-        // default behavior is refresh the page
+        // default behavior refreshes the page
         e.preventDefault();
-        alert("This is a static version, so no backend service available.");
-        /*
+        alert("This is a static version. No backend service is available.");
+        /* ======================= Only work with backend api =======================
         var par = $(e.target).parent().parent().parent();
         let temp = par.serializeArray();
         id = temp[0].value;
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 });
             });
         }
-        */
+        ======================= Only work with backend api ======================= */
     })
     // id: chansun
     // password: 123123

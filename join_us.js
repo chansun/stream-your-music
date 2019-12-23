@@ -49,7 +49,6 @@ function bake_cookie(id, password, jwt, mins) {
 }
 
 async function create_account(id, password) {
-    console.log("create account");
     try {
         const result = await $.ajax({
             method: 'POST',
@@ -100,11 +99,11 @@ $(document).ready(function () {
     let password_repeat = "";
 
     $('#body').on('click', '.button', function (e) {
-        // default behavior is refresh the page
+        // default behavior refreshes the page
         e.preventDefault();
         e.stopPropagation();
-        alert("This is a static version, so no backend service available.");
-        /*
+        alert("This is a static version. No backend service is available.");
+        /* ======================= Only work with backend api =======================
         var par = $(e.target).parent();
         let temp = par.serializeArray();
         id = temp[0].value;
@@ -135,7 +134,7 @@ $(document).ready(function () {
                 });
             });
         }
-        */
+        ======================= Only work with backend api ======================= */
     });
 });
 // id: chansun
