@@ -24,13 +24,13 @@
 
 ## Notes
   * The original website used for the final project for Comp426 included backend serivce (e.g., creating an account, logging in with the account, and deleting the account). However, the one uploaded here is a static version of it so such backend service is unavailable here.
-  * The website relies on YouTube videos. Upon the search request for a song from users, the website fetches the corresponding YouTube video to the website using Youtube API. Then, the website removes the video part and only leaves the audio part. This way, the website works like a music streaming website. However, because the website consumes YouTube API data every time users search a song, there is a limited number of queries that users can make per day. Once the YouTube API data runs out for the day, the searching service becomes instantly unavailable.
+  * The website relies on YouTube videos. Upon the search request for a song from users, the website fetches the corresponding YouTube video to the website using Youtube Data API. Then, the website removes the video part and only leaves the audio part. This way, the website works like a music streaming website. However, because the website consumes YouTube Data API quota every time users search a song, there is a limited number of queries that users can make per day. Once the YouTube Data API quota runs out for the day, the searching service becomes instantly unavailable.
 
 ## Technologies used
   * Language: HTML, CSS, and JavaScript
   * CSS Framework: Bulma
   * JavaScript Library: jQuery and jQuery UI
-  * 3rd Part API: YouTube API
+  * 3rd Part API: YouTube Data API
 
 ## Links
   * Demo video - https://youtu.be/qyUT4F7xRfA
