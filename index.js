@@ -171,7 +171,7 @@ async function Youtube_get(query) {
     }
     catch (error) {
         console.log("Youtube_get threw an error!");
-        alert("Searching service is unavailable now because Youtube Data API quota limit has been reached for today. Please try again tomorrow.")
+        alert("Youtube Data API quota runs out for today. Please try again tomorrow.")
     }
 }
 
