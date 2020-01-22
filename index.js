@@ -164,7 +164,7 @@ async function Youtube_get(query) {
     try {
         const result = await $.ajax({
             method: 'GET',
-            url: `https://www.googleapis.com/youtube/v3/search?q=${query}&part=snippet&key=AIzaSyB2r5glW1zie45HJzroGHoLz59MVosptNc&maxResults=1`,
+            url: `https://www.googleapis.com/youtube/v3/search?q=${query}&part=snippet&key=AIzaSyBWgCM55gcuFjLCS4kBDA3WWOGPmc7Z-R8&maxResults=1`,
             dataType: "json",
         });
         return result;
